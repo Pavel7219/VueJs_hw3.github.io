@@ -3,30 +3,12 @@ const router = new VueRouter({
     routes: [
         {
             path: '/:id',
-            component: Selectenimal,
+            component: BaseDropdownMenu,
             props: true,
-            name: "enimal",
+            name: "baseDropdownMenu",
             children: [
-                {
-                    path: '/:id/cat',
-                    component: Cat,
-                    props: true,
-                    name: 'cat',
-                },
-                {
-                    path: '/:id/dog',
-                    component: Dog,
-                    name: 'dog'
-
-                },
-                {
-                    path: '/:id/frog',
-                    component: Frog,
-                    props: true,
-                    name: 'frog',
-                },
 
             ]
         }
-       ]
+    ]
 })

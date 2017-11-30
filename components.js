@@ -1,46 +1,61 @@
-var Cat = ({
-    props:["id"],
-    template: `
-  <div >
-  <div class="image"
-   <img class="picture" src="http://kaifolog.ru/uploads/posts/2014-03/1396231060_020.jpg"/>
-   </div>
-  </div>
- `
+const BaseDropdownMenu = ('dropdown-menu',{
+    props:{
+        options:{
+            type:Array,
+        }
+    },
+    data:function () {
+        return {
+            visibleStatus: false,
+        }
+    },
+    methods:{
+        changeMenuVisibility: function ( event ) {
+            this.visibleStatus = !this.visibleStatus,
+                this.visibleStatus1 = !this.visibleStatus1
+        },
+        selectOptionHandler: function ( event ) {
+            /*this.visibleStatus = false*/
+            this.$parent.$emit ( 'menuSelect', event.target.innerHTML.trim() )
+        },
+        exitImg: function () {
+            this.$parent.$emit ( 'exitimg')
+        }
+    },
+    template:`
+    <div>
+       <div class='left-dropdown-menu-button'  @click="changeMenuVisibility">Select Animals</div>
+       <div class="option-menu" v-if = "visibleStatus" >
+           <div class="option-menu-drop" @click="selectOptionHandler" 
+               v-for="item in options"
+               :key="item" @mouseleave = "exitImg"
+               :id="item"
+            >
+            <router-link  class="link" :to="{ name: 'baseDropdownMenu', params: { id: item }}">{{item}}</router-link></div>
+       </div>
+     <!--<router-view></router-view> -->
+    </div>
+    `
 })
-var Dog = ({
-    props:["id"],
+
+const Animal = ( 'show-img-items', {
+    props:["optionSelect"],
+    data:function () {
+        return {
+            visibleStatus1: true,
+            /*optionSelect1:'optionSelect',*/
+            /*optionSelect:this.optionSelect*/
+        }
+    },
+    methods: {
+        changeMenuVisibility1: function (event) {
+            this.visibleStatus1 = !this.visibleStatus1
+        }
+    },
     template: `
-  <div >
-   <img class="picture" src="http://zoo-dom.com.ua/upload/fotogallery/ru/20141125071441.jpg"/>
-  </div>
- `
-})
-var Frog = ({
-    props:["id"],
-    template: `
-  <div >
-   <img class="picture" src="http://katyaburg.ru/sites/default/files/pictures/prikoly/prikolnye_lyagushki_i_gaby_foto_02.jpg"/>
-  </div>
- `
-})
-var Selectenimal = ({
-    template: `<div>
-     <div class="select">
-       <router-link class="link" :to="{ name:'cat' }">
-          Cat
-      </router-link>
-     </div> 
-     <div class="select">
-       <router-link class="link" :to="{ name:'dog' }">
-          Dog
-      </router-link>
-      </div>
-      <div class="select">
-      <router-link class="link" :to="{ name:'frog' }">
-          Frog
-      </router-link>
-      </div>
-      <router-view ></router-view>
-              </div>`
+  
+   
+      
+    <img class="show-img" src="optionSelect" v-if="visibleStatus1" >`
+
 })

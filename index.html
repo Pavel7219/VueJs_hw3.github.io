@@ -5,17 +5,15 @@
     <link href="index.css" rel="stylesheet" type="text/css" />
    <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-
+    <script src="data.js"></script>
     <title>Title</title>
 </head>
 <body>
     <div id="app">
-        <div class="dropp-menu">
-        <router-link class="link" to="/enimal">Select
-        </router-link> <br>
-
-        <router-view></router-view>
-        </div>
+        <dropdown-menu :options="mainMenuOptions">
+        </dropdown-menu>
+        <show-img-items :src='optionSelect'>
+            <router-view></router-view>
     </div>
     <script src="components.js"></script>
     <script src="router-component.js"></script>
