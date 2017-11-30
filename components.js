@@ -6,13 +6,13 @@ const BaseDropdownMenu = ('dropdown-menu',{
     },
     data:function () {
         return {
-            visibleStatus: false,
+            visibleStatus: false
         }
     },
     methods:{
         changeMenuVisibility: function ( event ) {
-            this.visibleStatus = !this.visibleStatus,
-                this.visibleStatus1 = !this.visibleStatus1
+            this.visibleStatus = !this.visibleStatus
+
         },
         selectOptionHandler: function ( event ) {
             /*this.visibleStatus = false*/
@@ -42,9 +42,8 @@ const Animal = ( 'show-img-items', {
     props:["optionSelect"],
     data:function () {
         return {
-            visibleStatus1: true,
-            /*optionSelect1:'optionSelect',*/
-            /*optionSelect:this.optionSelect*/
+            visibleStatus1: true
+
         }
     },
     methods: {
